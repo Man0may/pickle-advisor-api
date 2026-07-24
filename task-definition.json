@@ -1,0 +1,22 @@
+{
+    "family": "pickleball-advisor",
+    "networkMode": "awsvpc",
+    "requiresCompatibilities": ["FARGATE"],
+    "cpu": "256",
+    "memory": "512",
+    "executionRoleArn": "arn:aws:iam::390844762967:role/ecsTaskExecutionRole",
+    "containerDefinitions": [
+        {
+            "name": "pickleball-advisor",
+            "image": "390844762967.dkr.ecr.us-east-1.amazonaws.com/pickleball-advisor:latest",
+            "portMappings": [
+                {
+                    "containerPort": 5000,
+                    "hostPort": 5000,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true
+        }
+    ]
+}
