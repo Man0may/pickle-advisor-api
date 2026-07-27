@@ -1,4 +1,5 @@
 import requests
+from datetime import datetime, timezone
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)
@@ -116,9 +117,18 @@ def score():
     })
 
 
+@app.route("/health")
+def health():
+    return jsonify({
+        "status": "healthy",
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+    })
+
+
 @app.route("/")
 def index():
     return jsonify({
         "service": "Pickleball Playability Advisor",
         "usage": "GET /score?latitude=38.89&longitude=-77.03",
+        "health": "GET /health",
     })
